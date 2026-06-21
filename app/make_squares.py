@@ -22,9 +22,11 @@ def create(save_path):
     num_recs = random.randrange(15, 35)
     min_size = random.randrange(20, 50)
     max_size = min_size + random.randrange(20, 100)
-    stroke_width = random.randrange(0, 4)  # 0 = sin borde
-    grid_step = random.randrange(30, 80)   # grilla variable
-    use_circles = random.random() > 0.5    # 50% chance de círculos
+    stroke_width = random.randrange(0, 4)
+    use_circles = random.random() > 0.5
+
+    # grid_step calculado para cubrir siempre los 1000px
+    grid_step = 1000 // num_recs
 
     outline = (0, 0, 0, 255) if stroke_width > 0 else None
 
@@ -47,7 +49,7 @@ def create(save_path):
 
         yoffset += grid_step
         xoffset = 0
-
+    
     img.save(save_path)
     image = io.BytesIO()
     img.save(image, "PNG")
