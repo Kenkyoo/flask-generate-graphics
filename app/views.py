@@ -17,14 +17,19 @@ def generate_another():
     graphic_image = create(tmp_file_path)
     response = f"""
     <div id="image-update-div">
-      <div class="image-frame">
-      <img id="new-image" src="data:image/png;base64,{graphic_image}" />
+      <div class="canvas-frame">
+        <img id="new-image" src="data:image/png;base64,{graphic_image}" alt="Generated artwork" />
       </div>
-      <div class="button-row">
-        <a download="art.png" href="data:image/png;base64,{graphic_image}">
-          <button class="btn btn-primary">Download</button></a>
-        <button class="btn btn-primary" hx-target="#image-update-div" hx-get="/generate-another" hx-swap="outerHTML">
-          I hate this art, make me another
+      <div class="controls">
+        <a class="btn btn-primary" download="art.png" href="data:image/png;base64,{graphic_image}">
+          Download
+        </a>
+        <button
+          class="btn btn-ghost"
+          hx-target="#image-update-div"
+          hx-get="/generate-another"
+          hx-swap="outerHTML">
+          Generate another
         </button>
       </div>
     </div>
